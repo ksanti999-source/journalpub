@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>แบบประเมินความพึงพอใจการใช้งานระบบ</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell feedback-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Feedback Form</p>
+          <h1>แบบประเมินความพึงพอใจการใช้งานระบบ</h1>
+          <p class="hero-text">
+            กรุณาประเมินการใช้งานระบบและเสนอข้อคิดเห็นเพิ่มเติม เพื่อใช้ปรับปรุงการใช้งานให้เหมาะสมยิ่งขึ้น
+          </p>
+        </div>
+      </header>
+
+      <section class="feedback-panel">
+        <form name="journal-feedback" method="POST" data-netlify="true" action="./feedback-success.html" class="feedback-form">
+          <input type="hidden" name="form-name" value="journal-feedback" />
+
+          <label>
+            <span>ระดับความพึงพอใจโดยรวม</span>
+            <select name="satisfaction" required>
+              <option value="">เลือกคะแนน</option>
+              <option value="5">มากที่สุด</option>
+              <option value="4">มาก</option>
+              <option value="3">ปานกลาง</option>
+              <option value="2">น้อย</option>
+              <option value="1">น้อยที่สุด</option>
+            </select>
+          </label>
+
+          <label>
+            <span>ฟังก์ชันที่ใช้งานบ่อย</span>
+            <input type="text" name="frequent_features" placeholder="เช่น ค้นหาวารสาร, กรอง Q1-Q4" />
+          </label>
+
+          <label>
+            <span>ข้อดีของระบบ</span>
+            <textarea name="strengths" rows="4" placeholder="ระบุจุดเด่นหรือสิ่งที่ช่วยให้งานง่ายขึ้น"></textarea>
+          </label>
+
+          <label>
+            <span>ปัญหาที่พบหรือสิ่งที่ควรปรับปรุง</span>
+            <textarea name="improvements" rows="5" placeholder="ระบุปัญหาที่พบหรือข้อเสนอแนะเพิ่มเติม"></textarea>
+          </label>
+
+          <label>
+            <span>ความต้องการฟังก์ชันเพิ่มเติม</span>
+            <textarea name="feature_request" rows="4" placeholder="เช่น export Excel, filter เพิ่มเติม, dashboard ใหม่"></textarea>
+          </label>
+
+          <div class="feedback-actions">
+            <button type="submit">ส่งแบบประเมิน</button>
+            <a href="./index.html">กลับหน้าหลัก</a>
+          </div>
+        </form>
+      </section>
+    </div>
+  </body>
+</html>
