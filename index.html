@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal Explorer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">งานวิจัยคณะมนุษยศาสตร์และสังคมศาสตร์ มหาวิทยาลัยสงขลานครินทร์</p>
+          <h1>Journal Explorer ตามสาขาวิชา</h1>
+          <p class="hero-text">
+            จัดกลุ่มรายชื่อวารสารตามสาขาวิชา โดยคัดเฉพาะวารสารที่ <strong>Active</strong>
+            ณ ปัจจุบัน และเป็น <strong>Journal</strong> เพื่อใช้ประกอบการพิจารณาตีพิมพ์
+          </p>
+        </div>
+        <div class="hero-stats" id="hero-stats"></div>
+      </header>
+
+      <section class="toolbar">
+        <label class="search">
+          <span>ค้นหาชื่อวารสาร</span>
+          <input id="search-input" type="search" placeholder="พิมพ์ชื่อวารสาร เช่น business, thai, history..." />
+        </label>
+
+        <label class="keyword-search">
+          <span>ค้นหาด้วย Keywords</span>
+          <input id="keyword-input" type="search" placeholder="พิมพ์คำสำคัญ เช่น geography, language, welfare..." />
+        </label>
+
+        <label class="field-filter">
+          <span>กรองตามหลักสูตร</span>
+          <select id="field-filter">
+            <option value="ทั้งหมด">ทั้งหมด</option>
+          </select>
+        </label>
+
+        <label class="quartile-filter">
+          <span>กรองตาม Quartile</span>
+          <select id="quartile-filter">
+            <option value="ทั้งหมด">ทั้งหมด</option>
+            <option value="Q1">Q1</option>
+            <option value="Q2">Q2</option>
+            <option value="Q3">Q3</option>
+            <option value="Q4">Q4</option>
+            <option value="ไม่มีข้อมูล">ไม่มีข้อมูล</option>
+          </select>
+        </label>
+      </section>
+
+      <main id="results" class="results"></main>
+    </div>
+
+    <dialog id="journal-modal" class="journal-modal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <p class="panel-label">รายละเอียดวารสาร</p>
+            <h2 id="modal-title"></h2>
+          </div>
+          <button id="modal-close" class="modal-close" type="button" aria-label="Close">ปิด</button>
+        </div>
+        <div id="modal-content" class="modal-content"></div>
+      </div>
+    </dialog>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
