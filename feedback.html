@@ -19,8 +19,7 @@
       </header>
 
       <section class="feedback-panel">
-        <form name="journal-feedback" method="POST" data-netlify="true" action="./feedback-success.html" class="feedback-form">
-          <input type="hidden" name="form-name" value="journal-feedback" />
+        <form id="feedback-form" class="feedback-form">
 
           <label>
             <span>ระดับความพึงพอใจโดยรวม</span>
@@ -59,7 +58,66 @@
             <a href="./index.html">กลับหน้าหลัก</a>
           </div>
         </form>
+
+        <div id="feedback-success" class="success-panel hidden">
+          <p class="eyebrow">Thank You</p>
+          <h2>ส่งแบบประเมินเรียบร้อยแล้ว</h2>
+          <p class="hero-text">ขอบคุณสำหรับข้อเสนอแนะ ข้อมูลของท่านจะช่วยให้เราปรับปรุงระบบให้ใช้งานได้ดียิ่งขึ้น</p>
+          <div class="feedback-actions">
+            <a href="./index.html">กลับหน้าหลัก</a>
+            <a href="./feedback.html">ส่งแบบประเมินอีกครั้ง</a>
+          </div>
+        </div>
       </section>
     </div>
+
+    <script src="./feedback-config.js"></script>
+    <script>
+      const form = document.querySelector("#feedback-form");
+      const successPanel = document.querySelector("#feedback-success");
+      const endpoint = window.FEEDBACK_CONFIG?.endpoint || "";
+
+      function encodeFormData(data) {
+        return new URLSearchParams(data).toString();
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalLabel = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = "กำลังส่ง...";
+
+        try {
+          if (!endpoint) {
+            throw new Error("Missing feedback endpoint");
+          }
+
+          const formData = new FormData(form);
+          formData.append("user_agent", navigator.userAgent);
+          formData.append("page_url", window.location.href);
+
+          await fetch(endpoint, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            },
+            body: encodeFormData(formData),
+          });
+
+          form.reset();
+          form.classList.add("hidden");
+          successPanel.classList.remove("hidden");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } catch (error) {
+          alert("ยังไม่ได้ตั้งค่า Google Sheets endpoint หรือส่งแบบประเมินไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = originalLabel;
+        }
+      });
+    </script>
   </body>
 </html>

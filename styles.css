@@ -380,6 +380,10 @@ select:focus {
   gap: 16px;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .feedback-form label {
   display: grid;
   gap: 8px;
@@ -423,6 +427,11 @@ select:focus {
 .feedback-actions button:hover,
 .feedback-actions a:hover {
   background: rgba(35, 131, 196, 0.22);
+}
+
+.feedback-actions button:disabled {
+  opacity: 0.7;
+  cursor: wait;
 }
 
 .success-panel {
